@@ -1,0 +1,5 @@
+# Agent Rules
+
+- You must use `uv` for all Python package management. Never use `pip`.
+- You must use `podman` for containers. Never use `docker`.
+- Before committing any code, you must run `just lint` and ensure there are zero warnings.

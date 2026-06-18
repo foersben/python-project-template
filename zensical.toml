@@ -1,0 +1,9 @@
+[project]
+name = "App Documentation"
+
+[plugins.mkdocstrings]
+default_handler = "python"
+
+[plugins.mkdocstrings.handlers.python.options]
+show_root_heading = true
+show_source = true

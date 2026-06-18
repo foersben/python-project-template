@@ -1,0 +1,3 @@
+[install]
+cache-dir = ".cache/uv"
+break-system-packages = true
