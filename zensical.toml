@@ -1,6 +1,16 @@
 [project]
 name = "Python Project Template Docs"
 plugins = ["mkdocstrings"]
+# Add this section for visual highlighting and UI components
+markdown_extensions = [
+    "admonition",            # Standard warnings/notes
+    "pymdownx.details",      # Collapsible text blocks
+    "pymdownx.superfences",  # Advanced code blocks (allows tabs)
+    "pymdownx.highlight",    # Syntax highlighting for code
+    "pymdownx.inlinehilite", # Highlighting for inline `code`
+    "pymdownx.tabbed",       # Tabbed interfaces for code comparisons
+    "pymdownx.magiclink",    # Auto-links GitHub issues and commit hashes
+]
 
 [project.plugins.mkdocstrings]
 default_handler = "python"
