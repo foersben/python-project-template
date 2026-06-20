@@ -39,7 +39,19 @@ custom_fences = [
 
 # 2. Material Theme Structural Configuration
 [project.theme]
-name = "material"
+variant = "modern"
+palette = [{
+    media = "(prefers-color-scheme: dark)",
+    scheme = "slate",
+    primary = "black",
+    accent = "deep-orange" },
+  { media = "(prefers-color-scheme: light)",
+    scheme = "default",
+    primary = "black",
+    accent = "deep-orange"
+    },
+]
+# name = "material"
 language = "en"
 features = [
     "navigation.tabs",
@@ -55,25 +67,25 @@ features = [
 repo = "fontawesome/brands/github"
 
 # 3. Dynamic Color Scheme Switcher (Optically replicated from Project Janus)
-[[project.theme.palette]]
-media = "(prefers-color-scheme: light)"
-scheme = "default"
-primary = "black"
-accent = "deep-orange"
+# [[project.theme.palette]]
+# media = "(prefers-color-scheme: light)"
+# scheme = "default"
+# primary = "black"
+# accent = "deep-orange"
 
-[project.theme.palette.toggle]
-icon = "material/brightness-7"
-name = "Switch to dark mode"
+# [project.theme.palette.toggle]
+# icon = "material/brightness-7"
+# name = "Switch to dark mode"
+#
+# [[project.theme.palette]]
+# media = "(prefers-color-scheme: dark)"
+# scheme = "slate"
+# primary = "black"
+# accent = "deep-orange"
 
-[[project.theme.palette]]
-media = "(prefers-color-scheme: dark)"
-scheme = "slate"
-primary = "black"
-accent = "deep-orange"
-
-[project.theme.palette.toggle]
-icon = "material/brightness-4"
-name = "Switch to light mode"
+# [project.theme.palette.toggle]
+# icon = "material/brightness-4"
+# name = "Switch to light mode"
 
 # 4. MathJax and Mermaid Rendering Assets
 [[project.extra_javascript]]
@@ -96,6 +108,14 @@ core = [
     "docs/index.md",
     "docs/api_reference.md"
 ]
+
+# Extra assets for MathJax (LaTeX) and Mermaid rendering
+[[project.extra_javascript]]
+src = "https://polyfill.io/v3/polyfill.min.js?features=es6"
+[[project.extra_javascript]]
+src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+[[project.extra_javascript]]
+src = "https://unpkg.com/mermaid@10/dist/mermaid.min.js"
 
 # 7. Document Tree Navigation Topology
 [[project.nav]]
