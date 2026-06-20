@@ -1,6 +1,7 @@
 [project]
 site_name = "Python Project Template Docs"
 
+# 1. Advanced Markdown Extensions
 markdown_extensions = [
     "admonition",
     "pymdownx.details",
@@ -8,9 +9,53 @@ markdown_extensions = [
     "pymdownx.highlight",
     "pymdownx.inlinehilite",
     "pymdownx.tabbed",
-    "pymdownx.magiclink"
+    "pymdownx.magiclink",
+    "pymdownx.tasklist",
+    "toc"
 ]
 
+# 2. Configure the Material Theme
+[project.theme]
+name = "material"
+language = "en"
+features = [
+    "navigation.tabs",
+    "navigation.sections",
+    "navigation.expand",
+    "navigation.top",
+    "search.highlight",
+    "search.share",
+    "search.suggest",
+    "content.code.copy"
+]
+
+# Repository Icon Link Configuration
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+# 3. Dynamic Color Scheme Switcher (Light Palette)
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+
+[project.theme.palette.toggle]
+icon = "material/brightness-7"
+name = "Switch to dark mode"
+
+# Dynamic Color Scheme Switcher (Dark Palette)
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "indigo"
+accent = "indigo"
+
+[project.theme.palette.toggle]
+icon = "material/brightness-4"
+name = "Switch to light mode"
+
+# 4. Plugin Configurations
 [project.plugins.mkdocstrings]
 default_handler = "python"
 
@@ -23,5 +68,4 @@ show_source = true
 heading_level = 2
 show_signature_annotations = true
 
-# Activating the HTML validation engine safely via TOML table definitions
 [project.plugins.htmlproofer]
