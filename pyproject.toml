@@ -26,11 +26,14 @@ dev = [
     "pre-commit>=4.0.0",
     "zensical>=0.0.45",
     "mkdocstrings[python]>=0.27.0",
+    "mkdocs-htmlproofer-plugin>=1.5.0",
+    "pyyaml>=6.0.2",
+    "types-PyYAML>=6.0.12.20240806", # Explicitly add type stubs for mypy
 ]
 
 [tool.ruff]
 target-version = "py313"
-line-length = 88
+line-length = 120
 
 [tool.ruff.lint]
 # Add "D" to the select array to activate docstring linting
@@ -47,6 +50,9 @@ convention = "google"
 [tool.ruff.lint.isort]
 known-first-party = ["app"]
 
+# [tool.ruff.lint.per-file-ignores]
+# "tests/**/*.py" = ["D"]
+
 [tool.ruff.format]
 quote-style = "double"
 
@@ -59,6 +65,7 @@ disallow_untyped_defs = true
 disallow_any_generics = true
 check_untyped_defs = true
 ignore_missing_imports = true
+explicit_package_bases = true
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

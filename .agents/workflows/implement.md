@@ -1,3 +1,6 @@
+---
+type: SOP
+---
 # Implement Feature Workflow
 
 1. Plan architecture.

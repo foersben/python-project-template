@@ -1,15 +1,14 @@
 [project]
-name = "Python Project Template Docs"
-plugins = ["mkdocstrings"]
-# Add this section for visual highlighting and UI components
+site_name = "Python Project Template Docs"
+
 markdown_extensions = [
-    "admonition",            # Standard warnings/notes
-    "pymdownx.details",      # Collapsible text blocks
-    "pymdownx.superfences",  # Advanced code blocks (allows tabs)
-    "pymdownx.highlight",    # Syntax highlighting for code
-    "pymdownx.inlinehilite", # Highlighting for inline `code`
-    "pymdownx.tabbed",       # Tabbed interfaces for code comparisons
-    "pymdownx.magiclink",    # Auto-links GitHub issues and commit hashes
+    "admonition",
+    "pymdownx.details",
+    "pymdownx.superfences",
+    "pymdownx.highlight",
+    "pymdownx.inlinehilite",
+    "pymdownx.tabbed",
+    "pymdownx.magiclink"
 ]
 
 [project.plugins.mkdocstrings]
@@ -23,3 +22,6 @@ show_root_heading = true
 show_source = true
 heading_level = 2
 show_signature_annotations = true
+
+# Activating the HTML validation engine safely via TOML table definitions
+[project.plugins.htmlproofer]
