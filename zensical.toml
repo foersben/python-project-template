@@ -1,61 +1,112 @@
 [project]
 site_name = "Python Project Template Docs"
+site_description = "Hardened Python Template optimized for Vertical Slice and Agentic Workflows"
+site_url = "https://foersben.github.io/python-project-template"
+docs_dir = "docs"
+site_dir = "site"
 
-# 1. Advanced Markdown Extensions
+# 1. Advanced Markdown Extensions matching Janus theme behavior
 markdown_extensions = [
     "admonition",
+    "tables",
     "pymdownx.details",
-    "pymdownx.superfences",
-    "pymdownx.highlight",
     "pymdownx.inlinehilite",
-    "pymdownx.tabbed",
-    "pymdownx.magiclink",
+    "pymdownx.snippets",
+    "pymdownx.highlight",
     "pymdownx.tasklist",
+    "pymdownx.arithmatex",
+    "pymdownx.superfences",
     "toc"
 ]
 
-# 2. Configure the Material Theme
+# Extension Configuration Tables
+[project.markdown_extensions_config.toc]
+permalink = true
+
+[project.markdown_extensions_config."pymdownx.highlight"]
+anchor_linenums = true
+
+[project.markdown_extensions_config."pymdownx.tasklist"]
+custom_checkbox = true
+
+[project.markdown_extensions_config."pymdownx.arithmatex"]
+generic = true
+
+[project.markdown_extensions_config."pymdownx.superfences"]
+custom_fences = [
+    { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }
+]
+
+# 2. Material Theme Structural Configuration
 [project.theme]
 name = "material"
 language = "en"
 features = [
     "navigation.tabs",
     "navigation.sections",
-    "navigation.expand",
     "navigation.top",
-    "search.highlight",
-    "search.share",
+    "toc.integrate",
     "search.suggest",
+    "search.highlight",
     "content.code.copy"
 ]
 
-# Repository Icon Link Configuration
 [project.theme.icon]
 repo = "fontawesome/brands/github"
 
-# 3. Dynamic Color Scheme Switcher (Light Palette)
+# 3. Dynamic Color Scheme Switcher (Optically replicated from Project Janus)
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
-primary = "indigo"
-accent = "indigo"
+primary = "black"
+accent = "deep-orange"
 
 [project.theme.palette.toggle]
 icon = "material/brightness-7"
 name = "Switch to dark mode"
 
-# Dynamic Color Scheme Switcher (Dark Palette)
 [[project.theme.palette]]
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
-primary = "indigo"
-accent = "indigo"
+primary = "black"
+accent = "deep-orange"
 
 [project.theme.palette.toggle]
 icon = "material/brightness-4"
 name = "Switch to light mode"
 
-# 4. Plugin Configurations
+# 4. MathJax and Mermaid Rendering Assets
+[[project.extra_javascript]]
+src = "https://polyfill.io/v3/polyfill.min.js?features=es6"
+
+[[project.extra_javascript]]
+src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+
+[[project.extra_javascript]]
+src = "https://unpkg.com/mermaid@10/dist/mermaid.min.js"
+
+# 5. Continuous Integrity Tracking Routes
+[tracking]
+config = ["pyproject.toml", "zensical.toml", ".pre-commit-config.yaml"]
+ci_cd = [".github/workflows/ci.yml"]
+
+# 6. OKF Knowledge Graph Layout Groups
+[documentation]
+core = [
+    "docs/index.md",
+    "docs/api_reference.md"
+]
+
+# 7. Document Tree Navigation Topology
+[[project.nav]]
+Home = "index.md"
+
+[[project.nav]]
+"API Metrics" = [
+    { "Reference Map" = "api_reference.md" }
+]
+
+# 8. Automated API Documentation Plugins
 [project.plugins.mkdocstrings]
 default_handler = "python"
 
