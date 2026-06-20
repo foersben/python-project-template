@@ -5,19 +5,47 @@ site_url = "https://foersben.github.io/python-project-template"
 docs_dir = "docs"
 site_dir = "site"
 
-# 1. Advanced Markdown Extensions matching Janus theme behavior
-markdown_extensions = [
-    "admonition",
-    "tables",
-    "pymdownx.details",
-    "pymdownx.inlinehilite",
-    "pymdownx.snippets",
-    "pymdownx.highlight",
-    "pymdownx.tasklist",
-    "pymdownx.arithmatex",
-    "pymdownx.superfences",
-    "toc"
+language = "en"
+features = [
+    "navigation.tabs",
+    "navigation.sections",
+    "navigation.top",
+    "toc.integrate",
+    "search.suggest",
+    "search.highlight",
+    "content.code.copy"
 ]
+
+
+# 1. Advanced Markdown Extensions matching Janus theme behavior
+# markdown_extensions = [
+#     "admonition",
+#     "tables",
+#     "pymdownx.details",
+#     "pymdownx.inlinehilite",
+#     "pymdownx.snippets",
+#     "pymdownx.highlight",
+#     "pymdownx.tasklist",
+#     "pymdownx.arithmatex",
+#     "pymdownx.superfences",
+#     "toc"
+# ]
+[project.markdown_extensions]
+admonition = {}
+tables = {}
+"pymdownx.details" = {}
+"pymdownx.inlinehilite" = {}
+"pymdownx.snippets" = {}
+"pymdownx.highlight" = { anchor_linenums = true }
+toc = { permalink = true }
+# Enables Task Lists (- [ ])
+"pymdownx.tasklist" = { custom_checkbox = true }
+# Enables LaTeX Support
+"pymdownx.arithmatex" = { generic = true }
+# Enables MermaidJS via superfences
+"pymdownx.superfences" = { custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+] }
 
 # Extension Configuration Tables
 [project.markdown_extensions_config.toc]
@@ -52,16 +80,6 @@ palette = [{
     },
 ]
 # name = "material"
-language = "en"
-features = [
-    "navigation.tabs",
-    "navigation.sections",
-    "navigation.top",
-    "toc.integrate",
-    "search.suggest",
-    "search.highlight",
-    "content.code.copy"
-]
 
 [project.theme.icon]
 repo = "fontawesome/brands/github"
