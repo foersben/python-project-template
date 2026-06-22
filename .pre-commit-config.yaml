@@ -10,12 +10,10 @@ repos:
       - id: check-added-large-files
         args: ['--maxkb=1000']
 
-  - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.5.0
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.18.2
     hooks:
-      - id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
-        exclude: poetry\.lock|uv\.lock
+    - id: gitleaks
 
   # NEW: Catch typos in code and documentation
   - repo: https://github.com/codespell-project/codespell
