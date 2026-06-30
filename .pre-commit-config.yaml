@@ -16,31 +16,33 @@ repos:
     - id: gitleaks
 
   # NEW: Catch typos in code and documentation
+
   - repo: https://github.com/codespell-project/codespell
     rev: v2.3.0
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
+        args: ["--skip", "*.lock"]
 
   - repo: local
     hooks:
       - id: ruff-check
         name: Ruff Check
-        entry: uv run ruff check --fix
+        entry: pixi run -e dev ruff check --fix
         language: system
         types: [python]
 
       - id: ruff-format
         name: Ruff Format
-        entry: uv run ruff format
+        entry: pixi run -e dev ruff format
         language: system
         types: [python]
 
       - id: mypy
         name: Mypy
         # Explicitly declare targets, block file string passing, and track changes
-        entry: uv run mypy app scripts
+        entry: pixi run -e dev mypy app scripts
         language: system
         files: ^(app/|scripts/|pyproject\.toml)
         pass_filenames: false
@@ -48,7 +50,7 @@ repos:
 
       - id: validate-okf
         name: Enforce Google Open Knowledge Format
-        entry: uv run python scripts/validate_okf.py
+        entry: pixi run -e dev python scripts/validate_okf.py
         language: system
         files: ^(docs/|\.agents/).*\.md$
         pass_filenames: false

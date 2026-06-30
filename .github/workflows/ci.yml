@@ -6,11 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions:
-  contents: read
-  pages: write      # Required for GitHub Pages
-  id-token: write   # Required for GitHub Pages
-
 jobs:
   quality-gate:
     name: Code & Context Quality
@@ -18,49 +13,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install uv & Python 3.13
-        uses: astral-sh/setup-uv@v4
+      - name: Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.8.1
         with:
-          enable-cache: true
-          python-version: '3.13'
-
-      - name: Install dependencies
-        run: uv sync --all-groups
+          pixi-version: latest
+          environments: ci-dev
 
       - name: Run Pre-Commit Hooks
-        run: SKIP=check-identity,enforce-author-identity uv run pre-commit run --all-files
+        run: SKIP=check-identity,enforce-author-identity pixi run -e ci-dev pre-commit run --all-files
 
       - name: Run Test Suite
-        run: uv run pytest
+        run: pixi run -e ci-dev pytest
 
-  deploy-docs:
-    name: Build & Deploy Documentation
-    needs: quality-gate # Only deploys if all tests and linting pass
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv & Python 3.13
-        uses: astral-sh/setup-uv@v4
+      - name: Run Trivy vulnerability scanner in fs mode
+        uses: aquasecurity/trivy-action@master
         with:
-          enable-cache: true
-          python-version: '3.13'
-
-      - name: Install dependencies
-        run: uv sync --group dev
-
-      - name: Build Docs with Zensical
-        run: uv run zensical build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./site
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          skip-dirs: '.pixi'
+          severity: 'CRITICAL,HIGH'
