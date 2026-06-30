@@ -2,27 +2,33 @@ default:
     @just --list
 
 setup:
-    uv sync --all-groups
-    uv run pre-commit install
+    pixi install
+    pixi run -e dev pre-commit install
 
 install:
     @just setup
 
 test:
-    uv run pytest
+    pixi run -e dev pytest
 
 lint:
-    uv run ruff check --fix .
-    uv run ruff format .
-    uv run mypy app/
+    pixi run -e dev ruff check --fix .
+    pixi run -e dev ruff format .
+    pixi run -e dev mypy app/
 
 format:
-    uv run ruff format .
+    pixi run -e dev ruff format .
 
 clean:
     find . -type d -name "__pycache__" -exec rm -rf {} +
     find . -type d -name "*.egg-info" -exec rm -rf {} +
-    rm -rf .pytest_cache .mypy_cache .coverage htmlcov .cache/uv
+    rm -rf .pytest_cache .mypy_cache .coverage htmlcov .pixi
 
 docs:
-    uv run zensical build
+    pixi run -e dev zensical build
+
+run:
+    pixi run fastapi run app/main.py
+
+act-ci:
+    act -W .github/workflows/ci.yml
