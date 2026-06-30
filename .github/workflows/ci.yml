@@ -16,7 +16,7 @@ jobs:
       - name: Setup Pixi
         uses: prefix-dev/setup-pixi@v0.8.1
         with:
-          pixi-version: v0.40.3
+          pixi-version: latest
           environments: ci-dev
 
       - name: Run Pre-Commit Hooks
